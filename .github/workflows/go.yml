@@ -1,11 +1,7 @@
 name: Build Jrebel Server
 
 on:
-  push:
-    branches:
-      - master
-    tags:
-      - '*'
+  repository_dispatch:
 
 jobs:
   build-job:
