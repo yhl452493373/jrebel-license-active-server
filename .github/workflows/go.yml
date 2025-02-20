@@ -33,7 +33,7 @@ jobs:
     - name: Upload Bin
       uses: actions/upload-artifact@main
       with:
-        name: exec file
+        name: jrebel-license-active-server
         path: |
           build-bin/jrebel-license-active-server-linux_amd64
           build-bin/jrebel-license-active-server-darwin_amd64
