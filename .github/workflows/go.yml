@@ -46,7 +46,7 @@ jobs:
         GITHUB_TOKEN: ${{ secrets.JREBEL_SERVER_TOKEN }}      
         
     - name: Release
-      uses: softprops/action-gh-release@main
+      uses: softprops/action-gh-release@v1
       if: steps.buildLinux.outputs.status == 'success' && steps.buildMacOs.outputs.status == 'success' && steps.buildWindows.outputs.status == 'success'
       with:
         files: |
