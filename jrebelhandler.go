@@ -32,10 +32,19 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 
 	w.Header().Set("content-type", "text/html; charset=utf-8")
 	w.WriteHeader(200)
-	html := `<h1>Hello,This is a Jrebel & JetBrains License Server!</h1>
-<p>License Server started at %s
-<p>JRebel 7.1 and earlier version Activation address was: <span style='color:red'>%s/{tokenname}</span>, with any email."
-<p>JRebel 2018.1 and later version Activation address was: %s/{guid}(eg:<span style='color:red'> %s/%s </span>), with any email.`
+	html := `
+	 <html>
+	 	<head>
+			<title>Jrebel 激活服务</title>
+	 	</head>
+	 	<body>
+			 <h1>你好，这是 Jrebel 的激活服务器！</h1>
+			 <p>访问地址：%s
+			 <p>JRebel 7.1 以及早期版本激活地址：<span style='color:red'>%s/{tokenname}</span>，可用任意邮箱。
+			 <p>JRebel 2018.1 以后激活地址：%s/{guid}(如:<span style='color:red'> %s/%s </span>)，可用任意邮箱。
+		 </body>
+	 </html>
+	`
 	_, _ = fmt.Fprintf(w, html, host, host, host, host, newUUIDV4String())
 }
 
