@@ -28,7 +28,7 @@ jobs:
       run: go build -o build-bin/jrebel-license-active-server-windows_amd64.exe ./  
       
     - name: Upload Bin
-      uses: actions/upload-artifact@v2
+      uses: actions/upload-artifact@v3
       if: startsWith(github.ref, 'refs/tags/')
       with:
         name: exec file
