@@ -31,24 +31,23 @@ func indexHandler(w http.ResponseWriter, r *http.Request) {
 	w.Header().Set("content-type", "text/html; charset=utf-8")
 	w.WriteHeader(200)
 	html := `
-	 <html>
-	 	<head>
+	<html>
+		<head>
 			<title>Jrebel 激活服务</title>
-	 	</head>
-	 	<body>
+		</head>
+		<body>
 			<h1>你好，这是 Jrebel 的激活服务器！</h1>
-			<p>访问地址：<span class='host'></span>
-			<p>JRebel 7.1 以及早期版本激活地址：<span class='host' style='color:red'></span>
-			<p>JRebel 2018.1 以后激活地址：<span class='host' style='color:red'></span>
-    			<p>邮箱为任意邮箱地址
-       			<script>
-	  			var host = window.location.origin;
-      				document.getElementsByClassName('protocol')[0].innerHTML = protocol;
-	  			document.getElementsByClassName('protocol')[1].innerHTML = protocol + '/{tokenname}';
-       				document.getElementsByClassName('protocol')[2].innerHTML = protocol + '/%s';
-	  		</script>
-		 </body>
-	 </html>
+			<p>访问地址：<span class='origin'></span>
+			<p>JRebel 7.1 以及早期版本激活地址：<span class='origin' style='color:red'></span>
+			<p>JRebel 2018.1 以后激活地址：<span class='origin' style='color:red'></span>
+			<p>邮箱为任意邮箱地址
+			<script>
+				document.getElementsByClassName('origin')[0].innerHTML = window.origin;
+				document.getElementsByClassName('origin')[1].innerHTML = window.origin + '/{tokenname}';
+				document.getElementsByClassName('origin')[2].innerHTML = window.origin + '/%s';
+			</script>
+		</body>
+	</html>
 	`
 	_, _ = fmt.Fprintf(w, html, newUUIDV4String())
 }
