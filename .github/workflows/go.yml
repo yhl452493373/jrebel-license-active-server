@@ -18,24 +18,20 @@ jobs:
     - name: Config Linux amd64
       run: CGO_ENABLED=0 GOOS=linux GOARCH=amd64
     - name: Build Linux amd64
-      id: buildLinux
       run: go build -o build-bin/jrebel-license-active-server-linux_amd64 ./
       
     - name: Config MacOS amd64
       run: CGO_ENABLED=0 GOOS=darwin GOARCH=amd64
     - name: Build MacOS amd64
-      id: buildMacOs
       run: go build -o build-bin/jrebel-license-active-server-darwin_amd64 ./
           
     - name: Config Windows amd64
       run: CGO_ENABLED=0 GOOS=windows GOARCH=amd64
     - name: Build Windows amd64
-      id: buildWindows
       run: go build -o build-bin/jrebel-license-active-server-windows_amd64.exe ./  
       
     - name: Upload Bin
       uses: actions/upload-artifact@main
-      if: steps.buildLinux.outputs.status == 'success' && steps.buildMacOs.outputs.status == 'success' && steps.buildWindows.outputs.status == 'success'
       with:
         name: exec file
         path: |
@@ -43,15 +39,4 @@ jobs:
           build-bin/jrebel-license-active-server-darwin_amd64
           build-bin/jrebel-license-active-server-windows_amd64.exe
       env:
-        GITHUB_TOKEN: ${{ secrets.JREBEL_SERVER_TOKEN }}      
-        
-    - name: Release
-      uses: softprops/action-gh-release@v1
-      if: steps.buildLinux.outputs.status == 'success' && steps.buildMacOs.outputs.status == 'success' && steps.buildWindows.outputs.status == 'success'
-      with:
-        files: |
-          build-bin/jrebel-license-active-server-linux_amd64
-          build-bin/jrebel-license-active-server-darwin_amd64
-          build-bin/jrebel-license-active-server-windows_amd64.exe
-      env:
-        GITHUB_TOKEN: ${{ secrets.JREBEL_SERVER_TOKEN }}
+        GITHUB_TOKEN: ${{ secrets.JREBEL_SERVER_TOKEN }} 
